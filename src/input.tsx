@@ -79,7 +79,10 @@ export const OTPInput = React.forwardRef<OTPInputRef, OTPInputProps>(
           style={[styles.input, style]}
           value={value}
           onChangeText={handlers.onChangeText}
-          onFocus={handlers.onFocus}
+          onFocus={() => {
+            actions.clear();
+            setImmediate(() => { handlers.onFocus() })
+          }}
           onBlur={handlers.onBlur}
           placeholder={placeholder}
           inputMode={inputMode}
